@@ -17,10 +17,10 @@
     <hr>
     <ul>
       <li *ngFor="let c of countries">
-        {{c.name.common}} - {{c.population}} - {{c.name.official}}
+        {{c.name.common}} - {{c.population}}
       </li>
 
     </ul>
-    tabla de resultados...
+      <countries-table [countries]="countries"></countries-table>
   </div>
 </div>
