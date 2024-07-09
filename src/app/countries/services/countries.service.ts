@@ -5,7 +5,6 @@ import { Country } from '../interfaces/country';
 
 @Injectable({ providedIn: 'root' })
 export class CountriesService {
-
   private apiURL: string = 'https://restcountries.com/v3.1';
 
   constructor(private http: HttpClient) {}
@@ -33,6 +32,16 @@ export class CountriesService {
 
   searchRegion(term: string): Observable<Country[]> {
     const url = `${this.apiURL}/region/${term}`;
+    return this.http.get<Country[]>(url).pipe(
+      catchError((error) => {
+        console.log(error);
+        return of([]);
+      })
+    );
+  }
+
+  searchCountryByAlphaCode(code: string): Observable<Country[]> {
+    const url = `${this.apiURL}/alpha/${code}`;
     return this.http.get<Country[]>(url).pipe(
       catchError((error) => {
         console.log(error);
