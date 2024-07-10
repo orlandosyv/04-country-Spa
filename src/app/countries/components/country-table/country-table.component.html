@@ -9,7 +9,6 @@
         <th>#</th>
         <!-- <th>Icon</th> -->
         <th>Name</th>
-        <th>Official Name</th>
         <th>Capital</th>
         <th>Population</th>
         <th>Flag</th>
@@ -21,7 +20,6 @@
         <td>{{ i + 1 }}</td>
         <!-- <td>{{ c.flag }}</td> -->
         <td>{{ c.name.common }}</td>
-        <td>{{ c.name.official }}</td>
         <td>{{ c.capital }}</td>
         <td>{{ c.population | number }}</td>
         <td><img [src]="c.flags.svg" [alt]="c.name.common"></td>
