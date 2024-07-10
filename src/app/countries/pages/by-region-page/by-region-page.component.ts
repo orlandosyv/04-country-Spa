@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Country } from '../../interfaces/country';
 import { CountriesService } from '../../services/countries.service';
 
+type Region = "Africa" | "Americas" | "Asia" | "Europe" | "Oceania";
+
 @Component({
   selector: 'app-by-region-page',
   templateUrl: './by-region-page.component.html',
@@ -9,16 +11,20 @@ import { CountriesService } from '../../services/countries.service';
 })
 export class ByRegionPageComponent {
   public countries: Country[] = [];
+  public regions: Region[] = ["Africa", "Americas", "Asia", "Europe", "Oceania"]
+  public selectedRegion?: Region;
   public isLoading: boolean = false;
   constructor(private countriesService: CountriesService) {}
 
-  public searchByRegion(term: string): void {
+  public searchByRegion(region: Region): void {
+
+    this.selectedRegion = region;
     this.isLoading = true;
-    this.countriesService.searchRegion(term).subscribe((Lander) => {
+    this.countriesService.searchRegion(region).subscribe((Lander) => {
       this.countries = Lander;
       this.isLoading = false;
     });
-    console.log(`From ByCountryPage ---> ${term}`);
+    console.log(`From ByCountryPage ---> ${region}`);
   }
 
 }
