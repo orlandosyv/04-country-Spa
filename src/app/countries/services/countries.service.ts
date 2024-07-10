@@ -19,7 +19,10 @@ export class CountriesService {
 
   searchCapital(term: string): Observable<Country[]> {
     const url = `${this.apiURL}/capital/${term}`;
-    return this.getCountriesRequest(url);
+    return this.getCountriesRequest(url)
+      .pipe(
+        tap(countries => this.cacheStore.byCapital = {term, countries})
+      );
   }
 
   searchCountry(term: string): Observable<Country[]> {
