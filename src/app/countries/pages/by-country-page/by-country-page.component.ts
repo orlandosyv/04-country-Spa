@@ -7,14 +7,18 @@ import { Country } from '../../interfaces/country';
   templateUrl: './by-country-page.component.html',
   styles: ``,
 })
+
 export class ByCountryPageComponent {
   public countries: Country[] = [];
+  public isLoading: boolean = false;
   constructor(private countriesService: CountriesService) {}
 
   public searchByCountry(term: string): void {
-    this.countriesService.searchCountry(term).subscribe((Lander) => {
-      this.countries = Lander;
-    });
+    this.isLoading = true;
+    this.countriesService.searchCountry(term).subscribe(Lander => {
+        this.countries = Lander;
+        this.isLoading = false;
+      });
     console.log(`From ByCountryPage ---> ${term}`);
   }
 }
