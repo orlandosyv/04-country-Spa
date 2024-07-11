@@ -9,7 +9,7 @@
     <button *ngFor="let region of regions"
       (click)="searchByRegion(region)"
       class="col btn m-1 "
-      [ngClass]="{'btn-secondary': selectedRegion === region }">
+      [ngClass]="{'btn-secondary': (selectedRegion === region )}">
       {{region}}
     </button>
 
